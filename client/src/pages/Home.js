@@ -41,6 +41,16 @@ const Home = () => {
     'Mobile Application Developer'
   ], 90, 1200);
 
+  // Flicker effect state
+  const [flicker, setFlicker] = useState(false);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFlicker(true);
+      setTimeout(() => setFlicker(false), 500);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section
       className="d-flex align-items-center justify-content-center min-vh-100 position-relative"
@@ -73,12 +83,27 @@ const Home = () => {
           0% { background-position: 0% 50%; }
           100% { background-position: 100% 50%; }
         }
+        .flicker {
+          animation: flicker-anim 0.5s linear;
+        }
+        @keyframes flicker-anim {
+          0%, 100% { opacity: 1; filter: brightness(1); }
+          10% { opacity: 0.7; filter: brightness(1.4); }
+          20% { opacity: 0.4; filter: brightness(0.7); }
+          30% { opacity: 0.9; filter: brightness(1.2); }
+          40% { opacity: 0.5; filter: brightness(1.5); }
+          50% { opacity: 1; filter: brightness(0.8); }
+          60% { opacity: 0.6; filter: brightness(1.3); }
+          70% { opacity: 0.8; filter: brightness(1.1); }
+          80% { opacity: 0.3; filter: brightness(1.6); }
+          90% { opacity: 1; filter: brightness(1); }
+        }
       `}</style>
       <div className="container position-relative" style={{ zIndex: 2 }}>
         <div className="row align-items-center justify-content-center flex-column flex-md-row">
           <div className="col-md-5 text-center mb-5 mb-md-0 d-flex flex-column align-items-center" data-aos="fade-right" data-aos-delay="200">
             <div
-              className="profile-img-wrapper position-relative"
+              className={`profile-img-wrapper position-relative${flicker ? ' flicker' : ''}`}
               style={{
                 display: 'inline-block',
                 borderRadius: '2.5rem',
