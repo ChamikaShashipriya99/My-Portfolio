@@ -12,9 +12,16 @@ import Resume from './pages/Resume';
 import Contact from './pages/Contact';
 import Footer from './components/Footer';
 import ParticleBackground from './components/ParticleBackground';
+import Preloader from './components/Preloader';
 
 function App() {
   const [scrolled, setScrolled] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 5000);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     AOS.init({
@@ -32,6 +39,8 @@ function App() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  if (loading) return <Preloader />;
 
   return (
     <div className="App bg-dark min-vh-100">
