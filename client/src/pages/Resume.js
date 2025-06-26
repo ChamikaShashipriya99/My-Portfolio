@@ -15,18 +15,32 @@ const Resume = () => (
       <div className="row justify-content-center">
         <div className="col-xl-10 col-lg-12">
           <div className="p-5 rounded-4 shadow-lg text-center mx-auto" style={{ background: 'rgba(35,39,47,0.4)', maxWidth: 900 }}>
-            <h2 className="fw-bold mb-4 display-5 text-info" data-aos="fade-up" data-aos-delay="200">Resume</h2>
-            <p className="mb-4 text-light" data-aos="fade-up" data-aos-delay="400">Download my resume to learn more about my experience and skills.</p>
-            <a
-              href="https://drive.google.com/file/d/11QOzaa3RMH-R-yrSONQXuwm9XsxZ2Epo/view?usp=sharing"
-              className="btn btn-info btn-lg shadow fw-bold"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-aos="zoom-in"
-              data-aos-delay="600"
-            >
-              Download Resume (PDF)
-            </a>
+            <div className="row align-items-center justify-content-center">
+              <div className="col-md-7 text-center text-md-start mb-4 mb-md-0">
+                <h2 className="fw-bold mb-4 display-5 text-info" data-aos="fade-up" data-aos-delay="200">Resume</h2>
+                <p className="mb-4 text-light" data-aos="fade-up" data-aos-delay="400">Download my resume to learn more about my experience and skills.</p>
+                <a
+                  href="https://drive.google.com/uc?export=download&id=11QOzaa3RMH-R-yrSONQXuwm9XsxZ2Epo"
+                  className="btn btn-info btn-lg shadow fw-bold"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-aos="zoom-in"
+                  data-aos-delay="600"
+                >
+                  Download Resume (PDF)
+                </a>
+              </div>
+              <div className="col-md-5 d-flex justify-content-center" data-aos="fade-left" data-aos-delay="800">
+                <div style={{ width: 300, maxWidth: '100%', borderRadius: '1rem', boxShadow: '0 2px 16px rgba(13,202,240,0.10)', overflow: 'hidden' }}>
+                  <iframe
+                    src="https://drive.google.com/file/d/11QOzaa3RMH-R-yrSONQXuwm9XsxZ2Epo/preview"
+                    title="Resume Preview"
+                    style={{ width: '100%', height: 400, border: 'none', borderRadius: '1rem' }}
+                    allow="autoplay"
+                  ></iframe>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
