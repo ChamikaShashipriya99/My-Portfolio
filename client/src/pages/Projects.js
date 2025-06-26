@@ -98,7 +98,21 @@ const Projects = () => {
                     const imageUrl = `https://opengraph.githubassets.com/1/${GITHUB_USERNAME}/${repo.name}`;
                     return (
                       <div className="col-md-6 col-lg-4" key={repo.id} data-aos="flip-left" data-aos-delay={index * 100}>
-                        <div className="card h-100 shadow-lg border-0" style={{ background: 'rgba(35,39,47,0.6)' }}>
+                        <div className="card h-100 shadow-lg border-0" 
+                          style={{ 
+                            background: 'rgba(35,39,47,0.6)', 
+                            transition: 'transform 0.22s cubic-bezier(.4,2,.6,1), box-shadow 0.22s cubic-bezier(.4,2,.6,1)',
+                            boxShadow: '0 4px 20px rgba(13,202,240,0.1), 0 2px 8px rgba(0,0,0,0.2)',
+                          }}
+                          onMouseOver={e => {
+                            e.currentTarget.style.transform = 'scale(1.05)';
+                            e.currentTarget.style.boxShadow = '0 12px 40px 0 rgba(13,202,240,0.32), 0 4px 24px 0 rgba(0,0,0,0.22)';
+                          }}
+                          onMouseOut={e => {
+                            e.currentTarget.style.transform = 'scale(1)';
+                            e.currentTarget.style.boxShadow = '0 4px 20px rgba(13,202,240,0.1), 0 2px 8px rgba(0,0,0,0.2)';
+                          }}
+                        >
                           <img
                             src={imageUrl}
                             alt={repo.name}
