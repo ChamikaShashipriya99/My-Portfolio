@@ -18,7 +18,7 @@ const Resume = () => (
             <h2 className="fw-bold mb-4 display-5 text-info" data-aos="fade-up" data-aos-delay="200">Resume</h2>
             <p className="mb-4 text-light" data-aos="fade-up" data-aos-delay="400">Download my resume to learn more about my experience and skills.</p>
             <a
-              href="https://drive.google.com/uc?export=download&id=11QOzaa3RMH-R-yrSONQXuwm9XsxZ2Epo"
+              href="https://drive.google.com/file/d/11QOzaa3RMH-R-yrSONQXuwm9XsxZ2Epo/view?usp=sharing"
               className="btn btn-info btn-lg shadow fw-bold"
               target="_blank"
               rel="noopener noreferrer"
