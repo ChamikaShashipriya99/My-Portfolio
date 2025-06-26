@@ -1,3 +1,5 @@
+This is the personal portfolio of Chamika Shashipriya, a passionate Full-Stack Developer and UI/UX Designer. Built with the MERN stack and Bootstrap, featuring dynamic GitHub integration and modern glassmorphism design.
+
 # MySite - Full Stack Application
 
 This is a full-stack application with a React frontend and Express backend.
