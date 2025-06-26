@@ -114,8 +114,11 @@ const Footer = () => (
       {/* Divider */}
       <div className="my-4" style={{ borderTop: '1.5px solid rgba(13,202,240,0.13)' }}></div>
       <div className="d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
-        <div className="fw-bold text-info" style={{ fontSize: '1.05rem', letterSpacing: '1px' }}>
-          © {new Date().getFullYear()} Chamika Shashipriya. All rights reserved.
+        <div className="d-flex align-items-center gap-2">
+          <img src={process.env.PUBLIC_URL + '/mindstack-favicon.png'} alt="MindStack Logo" style={{ width: 38, height: 38, borderRadius: '12px', boxShadow: '0 2px 8px 0 rgba(13,202,240,0.10)' }} />
+          <span className="fw-bold text-info" style={{ fontSize: '1.05rem', letterSpacing: '1px' }}>
+            © {new Date().getFullYear()} Chamika Shashipriya. All rights reserved.
+          </span>
         </div>
         <button
           className="btn btn-outline-info btn-sm fw-bold rounded-pill px-3"
