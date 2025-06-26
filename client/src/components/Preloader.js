@@ -86,8 +86,8 @@ const Preloader = () => (
     <ParticleBG />
     <div style={{
       position: 'relative',
-      width: 170,
-      height: 170,
+      width: 210,
+      height: 210,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -96,35 +96,35 @@ const Preloader = () => (
       {/* Multi-layered animated gradient border */}
       <div style={{
         position: 'absolute',
-        top: -14,
-        left: -14,
-        width: 'calc(100% + 28px)',
-        height: 'calc(100% + 28px)',
-        borderRadius: '3rem',
+        top: -18,
+        left: -18,
+        width: 'calc(100% + 36px)',
+        height: 'calc(100% + 36px)',
+        borderRadius: '4rem',
         background: 'conic-gradient(from 90deg at 50% 50%, #0dcaf0, #0d6efd, #0dcaf0 100%)',
-        filter: 'blur(10px)',
+        filter: 'blur(12px)',
         opacity: 0.7,
         zIndex: 1,
         animation: 'spin 2.5s linear infinite',
       }} />
       <div style={{
         position: 'absolute',
-        top: -24,
-        left: -24,
-        width: 'calc(100% + 48px)',
-        height: 'calc(100% + 48px)',
-        borderRadius: '3.5rem',
+        top: -32,
+        left: -32,
+        width: 'calc(100% + 64px)',
+        height: 'calc(100% + 64px)',
+        borderRadius: '4.5rem',
         background: 'linear-gradient(120deg, rgba(13,202,240,0.10) 0%, rgba(24,24,27,0.0) 100%)',
-        filter: 'blur(18px)',
+        filter: 'blur(22px)',
         opacity: 0.5,
         zIndex: 0,
       }} />
       {/* Glassy card */}
       <div style={{
         position: 'relative',
-        width: 140,
-        height: 140,
-        borderRadius: '2.5rem',
+        width: 170,
+        height: 170,
+        borderRadius: '3.5rem',
         background: 'rgba(24,24,27,0.55)',
         boxShadow: '0 8px 32px 0 rgba(13,202,240,0.13), 0 2px 8px 0 rgba(0,0,0,0.18)',
         border: '1.5px solid rgba(13,202,240,0.18)',
@@ -139,13 +139,13 @@ const Preloader = () => (
           src={process.env.PUBLIC_URL + '/mindstack-favicon.png'}
           alt="MindStack Logo"
           style={{
-            width: 100,
-            height: 100,
-            borderRadius: '2rem',
+            width: 140,
+            height: 140,
+            borderRadius: '3rem',
             boxShadow: '0 2px 16px 0 rgba(13,202,240,0.18)',
             zIndex: 2,
             background: '#fff',
-            padding: 10,
+            padding: 14,
             animation: 'pulse 1.6s ease-in-out infinite',
           }}
         />
