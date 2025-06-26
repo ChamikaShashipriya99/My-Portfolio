@@ -48,6 +48,7 @@ const Contact = () => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [errors, setErrors] = useState({});
   const [submitAttempted, setSubmitAttempted] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const validate = (values) => {
     const errs = {};
@@ -70,6 +71,9 @@ const Contact = () => {
     setErrors(errs);
     if (Object.keys(errs).length > 0) {
       e.preventDefault();
+    } else {
+      // Show success message after short delay to allow Formspree to process
+      setTimeout(() => setSuccess(true), 500);
     }
   };
 
@@ -175,7 +179,13 @@ const Contact = () => {
                 ))}
               </div>
               {/* Success/alert area (placeholder, Formspree will show real message) */}
-              <div id="contact-alert" style={{ minHeight: 28 }}></div>
+              <div id="contact-alert" style={{ minHeight: 28 }}>
+                {success && (
+                  <div className="alert alert-success text-center fw-bold" style={{ fontSize: '1.1rem' }}>
+                    Thank you! Your message has been sent successfully.
+                  </div>
+                )}
+              </div>
               <form
                 action={FORMSPREE_ENDPOINT}
                 method="POST"
@@ -185,6 +195,7 @@ const Contact = () => {
                 autoComplete="off"
                 onSubmit={handleSubmit}
                 noValidate
+                style={{ display: success ? 'none' : 'block' }}
               >
                 <div className="mb-3">
                   <span className="text-info me-2">{fieldIcons.name}</span>
