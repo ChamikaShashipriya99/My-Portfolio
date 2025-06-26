@@ -12,6 +12,11 @@ const socialLinks = [
     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg',
   },
   {
+    name: 'Instagram',
+    url: 'https://www.instagram.com/chamika_99_?igsh=YWVmc2pmY3A4eGtw',
+    icon: 'https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png',
+  },
+  {
     name: 'Email',
     url: 'mailto:chamikashashipriya3@gmail.com',
     icon: 'https://img.icons8.com/ios-filled/50/ffffff/new-post.png',

@@ -78,6 +78,7 @@ const Home = () => {
         <div className="row align-items-center justify-content-center flex-column flex-md-row">
           <div className="col-md-5 text-center mb-5 mb-md-0 d-flex flex-column align-items-center" data-aos="fade-right" data-aos-delay="200">
             <div
+              className="profile-img-wrapper position-relative"
               style={{
                 display: 'inline-block',
                 borderRadius: '2.5rem',
@@ -87,8 +88,37 @@ const Home = () => {
                 background: 'rgba(35,39,47,0.7)',
                 padding: 0,
                 position: 'relative',
+                transition: 'transform 0.3s cubic-bezier(.4,2,.6,1), box-shadow 0.3s cubic-bezier(.4,2,.6,1)',
+              }}
+              onMouseOver={e => {
+                e.currentTarget.style.transform = 'scale(1.04)';
+                e.currentTarget.style.boxShadow = '0 0 48px 8px #0dcaf0, 0 12px 48px 0 rgba(13,202,240,0.25)';
+              }}
+              onMouseOut={e => {
+                e.currentTarget.style.transform = 'scale(1)';
+                e.currentTarget.style.boxShadow = '0 12px 48px 0 rgba(13,202,240,0.25)';
               }}
             >
+              {/* Animated gradient border */}
+              <div style={{
+                position: 'absolute',
+                top: -14,
+                left: -14,
+                width: 'calc(100% + 28px)',
+                height: 'calc(100% + 28px)',
+                borderRadius: '3rem',
+                background: 'conic-gradient(from 90deg at 50% 50%, #0dcaf0, #0d6efd, #0dcaf0 100%)',
+                filter: 'blur(12px)',
+                opacity: 0.7,
+                zIndex: 0,
+                animation: 'spin 6s linear infinite',
+              }} />
+              <style>{`
+                @keyframes spin {
+                  0% { transform: rotate(0deg); }
+                  100% { transform: rotate(360deg); }
+                }
+              `}</style>
               {/* Subtle glow/gradient behind image */}
               <div style={{
                 position: 'absolute',
@@ -103,7 +133,7 @@ const Home = () => {
               <img
                 src={profileImg}
                 alt="Chamika Shashipriya"
-                style={{ width: 320, height: 400, objectFit: 'cover', borderRadius: '2rem', position: 'relative', zIndex: 1 }}
+                style={{ width: 320, height: 400, objectFit: 'cover', borderRadius: '2rem', position: 'relative', zIndex: 1, boxShadow: '0 4px 32px 0 rgba(13,202,240,0.10)' }}
                 data-aos="zoom-in"
                 data-aos-delay="300"
               />
@@ -143,20 +173,30 @@ const Home = () => {
             </p>
             <a
               href="#projects"
-              className="btn"
+              className="btn glassy-btn"
               style={{
-                background: '#0dcaf0',
+                background: 'rgba(13,202,240,0.18)',
                 color: '#18181b',
                 fontWeight: 700,
                 borderRadius: '2rem',
                 padding: '0.85rem 2.5rem',
                 fontSize: '1.15rem',
-                boxShadow: '0 2px 8px 0 rgba(13,202,240,0.15)',
-                transition: 'transform 0.2s, box-shadow 0.2s',
-                border: 'none',
+                boxShadow: '0 2px 16px 0 rgba(13,202,240,0.15)',
+                border: '1.5px solid rgba(13,202,240,0.35)',
+                backdropFilter: 'blur(12px) saturate(160%)',
+                WebkitBackdropFilter: 'blur(12px) saturate(160%)',
+                transition: 'transform 0.2s, box-shadow 0.2s, background 0.2s',
               }}
-              onMouseOver={e => (e.currentTarget.style.transform = 'scale(1.05)')}
-              onMouseOut={e => (e.currentTarget.style.transform = 'scale(1)')}
+              onMouseOver={e => {
+                e.currentTarget.style.transform = 'scale(1.05)';
+                e.currentTarget.style.background = 'rgba(13,202,240,0.32)';
+                e.currentTarget.style.boxShadow = '0 6px 32px 0 rgba(13,202,240,0.18)';
+              }}
+              onMouseOut={e => {
+                e.currentTarget.style.transform = 'scale(1)';
+                e.currentTarget.style.background = 'rgba(13,202,240,0.18)';
+                e.currentTarget.style.boxShadow = '0 2px 16px 0 rgba(13,202,240,0.15)';
+              }}
             >
               View My Work
             </a>

@@ -12,6 +12,12 @@ const socialLinks = [
     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg',
   },
   {
+    name: 'Instagram',
+    url: 'https://www.instagram.com/chamika_99_?igsh=YWVmc2pmY3A4eGtw',
+    icon: 'https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png',
+    display: '@chamika_99_',
+  },
+  {
     name: 'Email',
     url: 'mailto:chamikashashipriya3@gmail.com',
     icon: 'https://img.icons8.com/ios-filled/50/ffffff/new-post.png',
@@ -144,6 +150,30 @@ const Contact = () => {
             <div className="p-5 rounded-4 shadow-lg mx-auto" style={{ background: 'rgba(24,24,27,0.4)', maxWidth: 900 }}>
               <h2 className="fw-bold mb-4 display-5 text-info" data-aos="fade-up">Contact</h2>
               <p className="mb-4 text-light" data-aos="fade-up" data-aos-delay="200">Feel free to reach out via the form below or connect with me on social media.</p>
+              {/* Social Icons Row */}
+              <div className="d-flex justify-content-center align-items-center gap-3 mb-4" data-aos="fade-up" data-aos-delay="250">
+                {socialLinks.map(link => (
+                  <a
+                    key={link.name}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="d-flex align-items-center justify-content-center"
+                    style={{
+                      width: 44,
+                      height: 44,
+                      borderRadius: '50%',
+                      background: 'rgba(13,202,240,0.10)',
+                      transition: 'background 0.2s',
+                      boxShadow: '0 2px 8px 0 rgba(13,202,240,0.08)',
+                    }}
+                    onMouseEnter={e => (e.currentTarget.style.background = 'rgba(13,202,240,0.25)')}
+                    onMouseLeave={e => (e.currentTarget.style.background = 'rgba(13,202,240,0.10)')}
+                  >
+                    <img src={link.icon} alt={link.name} style={{ width: 26, height: 26, borderRadius: 4, background: link.name === 'WhatsApp' ? '#fff' : 'transparent' }} />
+                  </a>
+                ))}
+              </div>
               {/* Success/alert area (placeholder, Formspree will show real message) */}
               <div id="contact-alert" style={{ minHeight: 28 }}></div>
               <form
@@ -205,30 +235,6 @@ const Contact = () => {
                   Send Message
                 </button>
               </form>
-              <div className="d-flex flex-wrap justify-content-center gap-4 mt-5" data-aos="fade-up" data-aos-delay="400">
-                {socialLinks.map(link => (
-                  <a
-                    key={link.name}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="contact-social-btn"
-                  >
-                    <img 
-                      src={link.icon} 
-                      alt={link.name} 
-                      style={{ 
-                        width: 28, 
-                        height: 28, 
-                        marginRight: 8, 
-                        borderRadius: 6, 
-                        background: link.name === 'WhatsApp' ? '#fff' : 'transparent' 
-                      }} 
-                    />
-                    {link.display || link.name}
-                  </a>
-                ))}
-              </div>
             </div>
           </div>
         </div>
