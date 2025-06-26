@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import AOS from 'aos';
 import Home from './pages/Home';
 import About from './pages/About';
+import WhatIDo from './pages/WhatIDo';
 import Skills from './pages/Skills';
 import Projects from './pages/Projects';
 import Resume from './pages/Resume';
@@ -158,6 +159,7 @@ function App() {
         {/* Sections */}
         <Home />
         <About />
+        <WhatIDo />
         <Skills />
         <Projects />
         <Resume />
