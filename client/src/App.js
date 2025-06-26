@@ -72,6 +72,7 @@ function App() {
               textShadow: '0 0 20px rgba(13, 202, 240, 0.3)'
             }}
           >
+            <img src={process.env.PUBLIC_URL + '/mindstack-favicon.png'} alt="MindStack Logo" style={{ width: 38, height: 38, borderRadius: '12px', marginRight: 10, boxShadow: '0 2px 8px 0 rgba(13,202,240,0.10)' }} />
             <span style={{ 
               background: 'linear-gradient(45deg, #0dcaf0, #0d6efd)',
               WebkitBackgroundClip: 'text',

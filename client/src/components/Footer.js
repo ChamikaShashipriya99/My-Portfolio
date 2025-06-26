@@ -38,11 +38,13 @@ const Footer = () => (
   <footer
     className="mt-5 pt-5 pb-3 position-relative w-100"
     style={{
-      background: 'rgba(24,24,27,0.4)',
-      backdropFilter: 'blur(12px)',
-      borderTop: '2px solid rgba(13,202,240,0.3)',
+      background: 'rgba(24,24,27,0.25)',
+      backdropFilter: 'blur(18px) saturate(160%)',
+      WebkitBackdropFilter: 'blur(18px) saturate(160%)',
+      borderTop: '2px solid rgba(13,202,240,0.18)',
+      borderRadius: '2rem 2rem 0 0',
+      boxShadow: '0 -8px 32px 0 rgba(13,202,240,0.10), 0 -2px 8px 0 rgba(0,0,0,0.18)',
       color: '#e0e0e0',
-      boxShadow: '0 -2px 24px 0 rgba(13,202,240,0.10)',
       zIndex: 10,
       overflow: 'hidden',
     }}
