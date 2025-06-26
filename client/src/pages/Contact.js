@@ -123,7 +123,7 @@ const Contact = () => {
           background: rgba(13,202,240,0.18);
           color: #fff !important;
           border: 1.5px solid rgba(13,202,240,0.35);
-          border-radius: 2rem;
+          border-radius: 1rem;
           box-shadow: 0 4px 24px 0 rgba(13,202,240,0.10), 0 2px 8px 0 rgba(0,0,0,0.18);
           font-weight: 700;
           font-size: 1.18rem;

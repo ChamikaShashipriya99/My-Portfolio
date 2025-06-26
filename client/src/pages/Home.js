@@ -88,14 +88,17 @@ const Home = () => {
         }
         @keyframes flicker-anim {
           0%, 100% { opacity: 1; filter: brightness(1); }
-          10% { opacity: 0.7; filter: brightness(1.4); }
-          20% { opacity: 0.4; filter: brightness(0.7); }
-          30% { opacity: 0.9; filter: brightness(1.2); }
-          40% { opacity: 0.5; filter: brightness(1.5); }
-          50% { opacity: 1; filter: brightness(0.8); }
-          60% { opacity: 0.6; filter: brightness(1.3); }
-          70% { opacity: 0.8; filter: brightness(1.1); }
-          80% { opacity: 0.3; filter: brightness(1.6); }
+          8% { opacity: 0.2; filter: brightness(2.2); }
+          15% { opacity: 0.7; filter: brightness(0.5); }
+          22% { opacity: 0.1; filter: brightness(2.5); }
+          30% { opacity: 0.9; filter: brightness(0.7); }
+          38% { opacity: 0.3; filter: brightness(2.8); }
+          45% { opacity: 0.8; filter: brightness(0.4); }
+          52% { opacity: 0.1; filter: brightness(2.7); }
+          60% { opacity: 0.6; filter: brightness(1.7); }
+          68% { opacity: 0.2; filter: brightness(2.3); }
+          75% { opacity: 0.8; filter: brightness(0.6); }
+          82% { opacity: 0.1; filter: brightness(2.6); }
           90% { opacity: 1; filter: brightness(1); }
         }
       `}</style>
@@ -203,7 +206,7 @@ const Home = () => {
                 background: 'rgba(13,202,240,0.18)',
                 color: '#18181b',
                 fontWeight: 700,
-                borderRadius: '2rem',
+                borderRadius: '1rem',
                 padding: '0.85rem 2.5rem',
                 fontSize: '1.15rem',
                 boxShadow: '0 2px 16px 0 rgba(13,202,240,0.15)',
