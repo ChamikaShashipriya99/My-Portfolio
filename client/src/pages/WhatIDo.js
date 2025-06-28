@@ -1,4 +1,5 @@
 import React from 'react';
+import './WhatIDo.css';
 
 const whatIDo = [
   {
@@ -24,36 +25,25 @@ const whatIDo = [
 ];
 
 const WhatIDo = () => (
-  <section
-    id="what-i-do"
-    className="py-5"
-    style={{
-      background: 'linear-gradient(135deg, rgba(35,39,47,0.2) 60%, rgba(24,24,27,0.3) 100%)',
-      color: '#fff',
-      position: 'relative',
-      zIndex: 1,
-    }}
-  >
-    <div className="container">
-      <div className="row justify-content-center">
-        <div className="col-xl-10 col-lg-12">
-          <div className="p-5 rounded-4 shadow-lg mx-auto" style={{ background: 'rgba(24,24,27,0.4)', maxWidth: 900 }}>
-            <h2 className="fw-bold mb-4 display-5 text-info" data-aos="fade-up">What I Do</h2>
-            <div className="row g-4">
-              {whatIDo.map((item, idx) => (
-                <div className="col-12 col-md-6" key={item.title} data-aos="zoom-in" data-aos-delay={idx * 100}>
-                  <div className="card h-100 border-0 shadow-sm" style={{ background: 'rgba(35,39,47,0.7)', borderRadius: '1.5rem' }}>
-                    <div className="card-body d-flex flex-column align-items-center text-center">
-                      <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>{item.icon}</div>
-                      <h5 className="card-title text-info fw-bold mb-2">{item.title}</h5>
-                      <p className="card-text text-light" style={{ fontSize: '1.08rem' }}>{item.desc}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
+  <section id="what-i-do" className="whatido-section">
+    <div className="whatido-container">
+      <h2 className="whatido-title" data-aos="fade-up">
+        <span className="title-accent">What</span> I Do
+      </h2>
+      <p className="whatido-subtitle" data-aos="fade-up" data-aos-delay="100">
+        My main areas of expertise and focus
+      </p>
+      <div className="whatido-steps">
+        {whatIDo.map((item, idx) => (
+          <div className="whatido-step" key={item.title} data-aos="zoom-in" data-aos-delay={idx * 120}>
+            <div className="whatido-icon">{item.icon}</div>
+            <div className="whatido-content">
+              <div className="whatido-step-title">{item.title}</div>
+              <div className="whatido-step-desc">{item.desc}</div>
             </div>
+            {idx !== whatIDo.length - 1 && <div className="whatido-connector" />}
           </div>
-        </div>
+        ))}
       </div>
     </div>
   </section>

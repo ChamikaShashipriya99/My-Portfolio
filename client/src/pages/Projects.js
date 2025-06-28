@@ -132,11 +132,11 @@ const Projects = () => {
           </div>
         )}
 
-        {!loading && !error && (
+              {!loading && !error && (
           <div className="projects-grid">
             {filteredRepos.map((repo, index) => {
-              const imageUrl = `https://opengraph.githubassets.com/1/${GITHUB_USERNAME}/${repo.name}`;
-              return (
+                    const imageUrl = `https://opengraph.githubassets.com/1/${GITHUB_USERNAME}/${repo.name}`;
+                    return (
                 <div 
                   className="project-card" 
                   key={repo.id} 
@@ -144,12 +144,12 @@ const Projects = () => {
                   data-aos-delay={index * 50}
                 >
                   <div className="project-image-container">
-                    <img
-                      src={imageUrl}
-                      alt={repo.name}
+                          <img
+                            src={imageUrl}
+                            alt={repo.name}
                       className="project-image"
-                      onError={e => { e.target.onerror = null; e.target.src = FALLBACK_IMAGE; }}
-                    />
+                            onError={e => { e.target.onerror = null; e.target.src = FALLBACK_IMAGE; }}
+                          />
                     <div className="project-overlay">
                       <div className="project-links">
                         <a 
@@ -176,7 +176,7 @@ const Projects = () => {
                             Live Demo
                           </a>
                         )}
-                      </div>
+                          </div>
                     </div>
                   </div>
                   
@@ -198,13 +198,13 @@ const Projects = () => {
                         </svg>
                         <span>{repo.stargazers_count} stars</span>
                       </div>
-                    </div>
-                  </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
-              );
-            })}
-          </div>
-        )}
+              )}
 
         {!loading && !error && filteredRepos.length === 0 && (
           <div className="no-projects" data-aos="fade-up">
