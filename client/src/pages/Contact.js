@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Contact.css';
 
 const socialLinks = [
   {
@@ -33,14 +34,7 @@ const socialLinks = [
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/xqabgbpp";
 
-const fieldIcons = {
-  name: <i className="bi bi-person-fill text-info me-2"></i>,
-  email: <i className="bi bi-envelope-fill text-info me-2"></i>,
-  message: <i className="bi bi-chat-dots-fill text-info me-2"></i>,
-};
-
 function validateEmail(email) {
-  // Simple email regex
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
@@ -72,181 +66,106 @@ const Contact = () => {
     if (Object.keys(errs).length > 0) {
       e.preventDefault();
     } else {
-      // Show success message after short delay to allow Formspree to process
       setTimeout(() => setSuccess(true), 500);
     }
   };
 
   return (
-    <section 
-      id="contact" 
-      className="py-5" 
-      style={{ 
-        background: 'linear-gradient(135deg, rgba(35,39,47,0.2) 60%, rgba(24,24,27,0.3) 100%)', 
-        color: '#fff',
-        position: 'relative',
-        zIndex: 1,
-      }}
-    >
-      <style>{`
-        .contact-form-dark::placeholder {
-          color: #6c757d !important;
-          opacity: 1 !important;
-        }
-        .contact-form-dark:focus::placeholder {
-          color: #0dcaf0 !important;
-          opacity: 0.7 !important;
-        }
-        .contact-social-btn {
-          background: rgba(13,202,240,0.18);
-          color: #fff !important;
-          border: 1.5px solid rgba(13,202,240,0.35);
-          border-radius: 2rem;
-          box-shadow: 0 4px 24px 0 rgba(13,202,240,0.10), 0 2px 8px 0 rgba(0,0,0,0.18);
-          font-weight: 600;
-          font-size: 1.1rem;
-          padding: 0.7rem 1.6rem;
-          margin: 0.4rem;
-          display: flex;
-          align-items: center;
-          gap: 0.7rem;
-          transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.18s;
-          backdrop-filter: blur(2px);
-        }
-        .contact-social-btn:hover, .contact-send-btn:hover {
-          background: rgba(13,202,240,0.32);
-          color: #18181b !important;
-          box-shadow: 0 6px 32px 0 rgba(13,202,240,0.18), 0 2px 8px 0 rgba(0,0,0,0.22);
-          transform: scale(1.06) translateY(-2px);
-        }
-        .contact-send-btn {
-          background: rgba(13,202,240,0.18);
-          color: #fff !important;
-          border: 1.5px solid rgba(13,202,240,0.35);
-          border-radius: 1rem;
-          box-shadow: 0 4px 24px 0 rgba(13,202,240,0.10), 0 2px 8px 0 rgba(0,0,0,0.18);
-          font-weight: 700;
-          font-size: 1.18rem;
-          padding: 0.9rem 2.5rem;
-          margin: 0.4rem auto 0 auto;
-          display: block;
-          transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.18s;
-          backdrop-filter: blur(2px);
-        }
-        @media (max-width: 600px) {
-          .contact-send-btn {
-            width: 100%;
-            font-size: 1.05rem;
-            padding: 0.8rem 0;
-          }
-        }
-        .contact-error {
-          color: #ff4d4f;
-          font-size: 0.98rem;
-          margin-top: 0.2rem;
-          margin-bottom: 0.2rem;
-          text-align: left;
-        }
-      `}</style>
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-xl-10 col-lg-12">
-            <div className="p-5 rounded-4 shadow-lg mx-auto" style={{ background: 'rgba(24,24,27,0.4)', maxWidth: 900 }}>
-              <h2 className="fw-bold mb-4 display-5 text-info" data-aos="fade-up">Contact</h2>
-              <p className="mb-4 text-light" data-aos="fade-up" data-aos-delay="200">Feel free to reach out via the form below or connect with me on social media.</p>
-              {/* Social Icons Row */}
-              <div className="d-flex justify-content-center align-items-center gap-3 mb-4" data-aos="fade-up" data-aos-delay="250">
-                {socialLinks.map(link => (
-                  <a
-                    key={link.name}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="d-flex align-items-center justify-content-center"
-                    style={{
-                      width: 44,
-                      height: 44,
-                      borderRadius: '50%',
-                      background: 'rgba(13,202,240,0.10)',
-                      transition: 'background 0.2s',
-                      boxShadow: '0 2px 8px 0 rgba(13,202,240,0.08)',
-                    }}
-                    onMouseEnter={e => (e.currentTarget.style.background = 'rgba(13,202,240,0.25)')}
-                    onMouseLeave={e => (e.currentTarget.style.background = 'rgba(13,202,240,0.10)')}
-                  >
-                    <img src={link.icon} alt={link.name} style={{ width: 26, height: 26, borderRadius: 4, background: link.name === 'WhatsApp' ? '#fff' : 'transparent' }} />
-                  </a>
-                ))}
+    <section id="contact" className="contact-section">
+      <div className="contact-container">
+        <h2 className="contact-title" data-aos="fade-up">
+          <span className="title-accent">Contact</span> Me
+        </h2>
+        <p className="contact-subtitle" data-aos="fade-up" data-aos-delay="100">
+          Feel free to reach out via the form or connect with me on social media.
+        </p>
+        <div className="contact-card">
+          {/* Left: Info & Socials */}
+          <div className="contact-info">
+            <h3 className="contact-info-title">Let's Connect</h3>
+            <p className="contact-info-desc">
+              I'm open to opportunities, collaborations, or just a friendly chat. Drop me a message or connect via social links below!
+            </p>
+            <div className="contact-socials">
+              {socialLinks.map(link => (
+                <a
+                  key={link.name}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`contact-social-icon contact-social-${link.name.toLowerCase()}`}
+                  title={link.name}
+                >
+                  <img src={link.icon} alt={link.name} />
+                </a>
+              ))}
+            </div>
+            <div className="contact-info-details">
+              <div className="contact-info-item">
+                <span className="contact-info-label">Email:</span>
+                <a href="mailto:chamikashashipriya3@gmail.com" className="contact-info-link">chamikashashipriya3@gmail.com</a>
               </div>
-              {/* Success/alert area (placeholder, Formspree will show real message) */}
-              <div id="contact-alert" style={{ minHeight: 28 }}>
-                {success && (
-                  <div className="alert alert-success text-center fw-bold" style={{ fontSize: '1.1rem' }}>
-                    Thank you! Your message has been sent successfully.
-                  </div>
-                )}
+              <div className="contact-info-item">
+                <span className="contact-info-label">WhatsApp:</span>
+                <a href="https://wa.me/94704120358" className="contact-info-link">+94 70 412 0358</a>
               </div>
+            </div>
+          </div>
+          {/* Right: Form */}
+          <div className="contact-form-wrapper">
+            {success ? (
+              <div className="contact-success">Thank you! Your message has been sent successfully.</div>
+            ) : (
               <form
                 action={FORMSPREE_ENDPOINT}
                 method="POST"
-                className="mb-4"
-                data-aos="fade-up"
-                data-aos-delay="300"
+                className="contact-form"
                 autoComplete="off"
                 onSubmit={handleSubmit}
                 noValidate
-                style={{ display: success ? 'none' : 'block' }}
               >
-                <div className="mb-3">
-                  <span className="text-info me-2">{fieldIcons.name}</span>
-                  <input 
-                    type="text" 
-                    className="form-control bg-dark text-white border-info ps-5 contact-form-dark" 
-                    name="name" 
-                    placeholder="Your Name" 
+                <div className="form-group">
+                  <input
+                    type="text"
+                    name="name"
+                    id="contact-name"
+                    className={`form-input ${errors.name ? 'has-error' : ''}`}
                     value={form.name}
                     onChange={handleChange}
-                    required 
-                    style={{ height: 48 }} 
+                    required
                   />
-                  {errors.name && <div className="contact-error">{errors.name}</div>}
+                  <label htmlFor="contact-name" className="form-label">Name</label>
+                  {errors.name && <div className="form-error">{errors.name}</div>}
                 </div>
-                <div className="mb-3">
-                  <span className="text-info me-2">{fieldIcons.email}</span>
-                  <input 
-                    type="email" 
-                    className="form-control bg-dark text-white border-info ps-5 contact-form-dark" 
-                    name="email" 
-                    placeholder="Your Email" 
+                <div className="form-group">
+                  <input
+                    type="email"
+                    name="email"
+                    id="contact-email"
+                    className={`form-input ${errors.email ? 'has-error' : ''}`}
                     value={form.email}
                     onChange={handleChange}
-                    required 
-                    style={{ height: 48 }} 
+                    required
                   />
-                  {errors.email && <div className="contact-error">{errors.email}</div>}
+                  <label htmlFor="contact-email" className="form-label">Email</label>
+                  {errors.email && <div className="form-error">{errors.email}</div>}
                 </div>
-                <div className="mb-3">
-                  <span className="text-info me-2">{fieldIcons.message}</span>
-                  <textarea 
-                    className="form-control bg-dark text-white border-info ps-5 contact-form-dark" 
-                    name="message" 
-                    rows="4" 
-                    placeholder="Your Message" 
+                <div className="form-group">
+                  <textarea
+                    name="message"
+                    id="contact-message"
+                    className={`form-input textarea ${errors.message ? 'has-error' : ''}`}
                     value={form.message}
                     onChange={handleChange}
-                    required 
-                    style={{ minHeight: 110 }}
-                  ></textarea>
-                  {errors.message && <div className="contact-error">{errors.message}</div>}
+                    required
+                    rows={5}
+                  />
+                  <label htmlFor="contact-message" className="form-label">Message</label>
+                  {errors.message && <div className="form-error">{errors.message}</div>}
                 </div>
-                <button 
-                  type="submit"
-                  className="contact-send-btn"
-                >
-                  Send Message
-                </button>
+                <button type="submit" className="contact-send-btn">Send Message</button>
               </form>
-            </div>
+            )}
           </div>
         </div>
       </div>
