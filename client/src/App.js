@@ -10,6 +10,7 @@ import Skills from './pages/Skills';
 import Projects from './pages/Projects';
 import Resume from './pages/Resume';
 import Contact from './pages/Contact';
+import Testimonials from './pages/Testimonials';
 import Footer from './components/Footer';
 import ParticleBackground from './components/ParticleBackground';
 import Preloader from './components/Preloader';
@@ -173,6 +174,7 @@ function App() {
         <Projects />
         <Resume />
         <Contact />
+        <Testimonials />
         <Footer />
       </div>
     </div>
