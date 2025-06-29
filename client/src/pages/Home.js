@@ -41,13 +41,14 @@ const Home = () => {
     'Mobile Application Developer'
   ], 90, 1200);
 
-  // Flicker effect state
-  const [flicker, setFlicker] = useState(false);
+  // Enhanced animation states
+  const [isHovered, setIsHovered] = useState(false);
+  const [particleCount, setParticleCount] = useState(0);
+
   useEffect(() => {
     const interval = setInterval(() => {
-      setFlicker(true);
-      setTimeout(() => setFlicker(false), 500);
-    }, 5000);
+      setParticleCount(prev => (prev + 1) % 8);
+    }, 2000);
     return () => clearInterval(interval);
   }, []);
 
@@ -83,88 +84,335 @@ const Home = () => {
           0% { background-position: 0% 50%; }
           100% { background-position: 100% 50%; }
         }
-        .flicker {
-          animation: flicker-anim 0.5s linear;
+        
+        @keyframes gradientShift {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
         }
-        @keyframes flicker-anim {
-          0%, 100% { opacity: 1; filter: brightness(1); }
-          8% { opacity: 0.2; filter: brightness(2.2); }
-          15% { opacity: 0.7; filter: brightness(0.5); }
-          22% { opacity: 0.1; filter: brightness(2.5); }
-          30% { opacity: 0.9; filter: brightness(0.7); }
-          38% { opacity: 0.3; filter: brightness(2.8); }
-          45% { opacity: 0.8; filter: brightness(0.4); }
-          52% { opacity: 0.1; filter: brightness(2.7); }
-          60% { opacity: 0.6; filter: brightness(1.7); }
-          68% { opacity: 0.2; filter: brightness(2.3); }
-          75% { opacity: 0.8; filter: brightness(0.6); }
-          82% { opacity: 0.1; filter: brightness(2.6); }
-          90% { opacity: 1; filter: brightness(1); }
+        
+        @keyframes scanLine {
+          0% { transform: translateY(-100%); }
+          100% { transform: translateY(400px); }
+        }
+        
+        @keyframes morphShape {
+          0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+          25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+          50% { border-radius: 50% 60% 30% 80% / 25% 80% 20% 75%; }
+          75% { border-radius: 80% 20% 60% 40% / 60% 40% 60% 20%; }
+        }
+        
+        @keyframes holographicShift {
+          0% { filter: hue-rotate(0deg) brightness(1) contrast(1.1); }
+          25% { filter: hue-rotate(90deg) brightness(1.1) contrast(1.2); }
+          50% { filter: hue-rotate(180deg) brightness(1) contrast(1.1); }
+          75% { filter: hue-rotate(270deg) brightness(1.1) contrast(1.2); }
+          100% { filter: hue-rotate(360deg) brightness(1) contrast(1.1); }
+        }
+        
+        @keyframes particleFloat {
+          0% { transform: translateY(0px) translateX(0px) scale(0); opacity: 0; }
+          10% { opacity: 1; }
+          90% { opacity: 1; }
+          100% { transform: translateY(-100px) translateX(var(--x)) scale(1); opacity: 0; }
+        }
+        
+        @keyframes pulseGlow {
+          0%, 100% { box-shadow: 0 0 20px rgba(13,202,240,0.3), 0 0 40px rgba(13,202,240,0.2), 0 0 60px rgba(13,202,240,0.1); }
+          50% { box-shadow: 0 0 30px rgba(13,202,240,0.5), 0 0 60px rgba(13,202,240,0.3), 0 0 90px rgba(13,202,240,0.2); }
+        }
+        
+        @keyframes rotate3D {
+          0% { transform: rotateY(0deg) rotateX(0deg); }
+          25% { transform: rotateY(5deg) rotateX(2deg); }
+          50% { transform: rotateY(0deg) rotateX(0deg); }
+          75% { transform: rotateY(-5deg) rotateX(-2deg); }
+          100% { transform: rotateY(0deg) rotateX(0deg); }
+        }
+        
+        @keyframes dataStream {
+          0% { transform: translateY(100%) scaleY(0); opacity: 0; }
+          10% { opacity: 1; }
+          90% { opacity: 1; }
+          100% { transform: translateY(-100%) scaleY(1); opacity: 0; }
+        }
+        
+        .profile-container {
+          animation: rotate3D 8s ease-in-out infinite;
+          transform-style: preserve-3d;
+          perspective: 1000px;
+        }
+        
+        .profile-container:hover {
+          animation-play-state: paused;
+        }
+        
+        .morphing-border {
+          animation: morphShape 8s ease-in-out infinite;
+        }
+        
+        .holographic-effect {
+          animation: holographicShift 4s ease-in-out infinite;
+        }
+        
+        .pulse-glow {
+          animation: pulseGlow 3s ease-in-out infinite;
+        }
+        
+        .particle {
+          position: absolute;
+          width: 4px;
+          height: 4px;
+          background: linear-gradient(45deg, #0dcaf0, #0d6efd);
+          border-radius: 50%;
+          animation: particleFloat 3s ease-out infinite;
+          animation-delay: calc(var(--delay) * 0.5s);
+        }
+        
+        .data-stream {
+          position: absolute;
+          width: 2px;
+          height: 100%;
+          background: linear-gradient(to top, transparent, #0dcaf0, transparent);
+          animation: dataStream 2s ease-in-out infinite;
+          animation-delay: calc(var(--delay) * 0.3s);
         }
       `}</style>
       <div className="container position-relative" style={{ zIndex: 2 }}>
         <div className="row align-items-center justify-content-center flex-column flex-md-row">
           <div className="col-md-5 text-center mb-5 mb-md-0 d-flex flex-column align-items-center" data-aos="fade-right" data-aos-delay="200">
             <div
-              className={`profile-img-wrapper position-relative${flicker ? ' flicker' : ''}`}
+              className="profile-container"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
               style={{
-                display: 'inline-block',
-                borderRadius: '2.5rem',
-                overflow: 'hidden',
-                border: '8px solid #0dcaf0',
-                boxShadow: '0 12px 48px 0 rgba(13,202,240,0.25)',
-                background: 'rgba(35,39,47,0.7)',
-                padding: 0,
                 position: 'relative',
-                transition: 'transform 0.3s cubic-bezier(.4,2,.6,1), box-shadow 0.3s cubic-bezier(.4,2,.6,1)',
-              }}
-              onMouseOver={e => {
-                e.currentTarget.style.transform = 'scale(1.04)';
-                e.currentTarget.style.boxShadow = '0 0 48px 8px #0dcaf0, 0 12px 48px 0 rgba(13,202,240,0.25)';
-              }}
-              onMouseOut={e => {
-                e.currentTarget.style.transform = 'scale(1)';
-                e.currentTarget.style.boxShadow = '0 12px 48px 0 rgba(13,202,240,0.25)';
+                display: 'inline-block',
+                transition: 'all 0.6s cubic-bezier(0.23, 1, 0.32, 1)',
+                transform: isHovered ? 'scale(1.1) rotateY(10deg)' : 'scale(1)',
               }}
             >
-              {/* Animated gradient border */}
-              <div style={{
-                position: 'absolute',
-                top: -14,
-                left: -14,
-                width: 'calc(100% + 28px)',
-                height: 'calc(100% + 28px)',
-                borderRadius: '3rem',
-                background: 'conic-gradient(from 90deg at 50% 50%, #0dcaf0, #0d6efd, #0dcaf0 100%)',
-                filter: 'blur(12px)',
-                opacity: 0.7,
-                zIndex: 0,
-                animation: 'spin 6s linear infinite',
-              }} />
-              <style>{`
-                @keyframes spin {
-                  0% { transform: rotate(0deg); }
-                  100% { transform: rotate(360deg); }
-                }
-              `}</style>
-              {/* Subtle glow/gradient behind image */}
-              <div style={{
-                position: 'absolute',
-                top: '-20px',
-                left: '-20px',
-                width: 'calc(100% + 40px)',
-                height: 'calc(100% + 40px)',
-                background: 'radial-gradient(circle, rgba(13,202,240,0.18) 0%, rgba(24,24,27,0) 80%)',
-                zIndex: 0,
-                filter: 'blur(8px)',
-              }} />
-              <img
-                src={profileImg}
-                alt="Chamika Shashipriya"
-                style={{ width: 320, height: 400, objectFit: 'cover', borderRadius: '2rem', position: 'relative', zIndex: 1, boxShadow: '0 4px 32px 0 rgba(13,202,240,0.10)' }}
-                data-aos="zoom-in"
-                data-aos-delay="300"
+              {/* Outer morphing border */}
+              <div 
+                className="morphing-border"
+                style={{
+                  position: 'absolute',
+                  top: -20,
+                  left: -20,
+                  width: 'calc(100% + 40px)',
+                  height: 'calc(100% + 40px)',
+                  background: 'linear-gradient(45deg, #0dcaf0, #0d6efd, #0dcaf0, #0d6efd)',
+                  backgroundSize: '400% 400%',
+                  animation: 'gradientShift 3s ease infinite, morphShape 8s ease-in-out infinite',
+                  zIndex: 0,
+                  filter: 'blur(8px)',
+                  opacity: 0.8,
+                }}
               />
+              
+              {/* Middle holographic layer */}
+              <div 
+                className="holographic-effect"
+                style={{
+                  position: 'absolute',
+                  top: -10,
+                  left: -10,
+                  width: 'calc(100% + 20px)',
+                  height: 'calc(100% + 20px)',
+                  background: 'linear-gradient(135deg, rgba(13,202,240,0.3), rgba(13,110,253,0.3), rgba(13,202,240,0.3))',
+                  borderRadius: '2.5rem',
+                  zIndex: 1,
+                  backdropFilter: 'blur(5px)',
+                  WebkitBackdropFilter: 'blur(5px)',
+                }}
+              />
+              
+              {/* Main profile container */}
+              <div
+                className="pulse-glow"
+                style={{
+                  position: 'relative',
+                  borderRadius: '2.5rem',
+                  padding: '12px',
+                  background: 'rgba(35,39,47,0.9)',
+                  border: '3px solid rgba(13,202,240,0.4)',
+                  zIndex: 2,
+                  backdropFilter: 'blur(20px)',
+                  WebkitBackdropFilter: 'blur(20px)',
+                  transition: 'all 0.4s cubic-bezier(0.23, 1, 0.32, 1)',
+                }}
+              >
+                {/* Floating particles */}
+                {[...Array(8)].map((_, i) => (
+                  <div
+                    key={i}
+                    className="particle"
+                    style={{
+                      '--delay': i,
+                      '--x': `${(i % 2 === 0 ? 1 : -1) * (Math.random() * 50 + 25)}px`,
+                      left: `${Math.random() * 100}%`,
+                      top: `${Math.random() * 100}%`,
+                    }}
+                  />
+                ))}
+                
+                {/* Data streams */}
+                {[...Array(4)].map((_, i) => (
+                  <div
+                    key={`stream-${i}`}
+                    className="data-stream"
+                    style={{
+                      '--delay': i,
+                      left: `${20 + i * 20}%`,
+                    }}
+                  />
+                ))}
+                
+                {/* Profile image with enhanced effects */}
+                <div style={{ position: 'relative', borderRadius: '2rem', overflow: 'hidden' }}>
+                  <img
+                    src={profileImg}
+                    alt="Chamika Shashipriya"
+                    style={{
+                      width: 320,
+                      height: 400,
+                      objectFit: 'cover',
+                      borderRadius: '2rem',
+                      position: 'relative',
+                      zIndex: 3,
+                      transition: 'all 0.6s cubic-bezier(0.23, 1, 0.32, 1)',
+                      filter: isHovered ? 'brightness(1.2) contrast(1.1) saturate(1.2)' : 'brightness(1) contrast(1.05)',
+                      transform: isHovered ? 'scale(1.05)' : 'scale(1)',
+                    }}
+                    data-aos="zoom-in"
+                    data-aos-delay="300"
+                  />
+                  
+                  {/* Overlay effects */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      background: isHovered 
+                        ? 'linear-gradient(135deg, rgba(13,202,240,0.2), rgba(13,110,253,0.1))'
+                        : 'transparent',
+                      borderRadius: '2rem',
+                      zIndex: 4,
+                      transition: 'all 0.4s ease',
+                    }}
+                  />
+                  
+                  {/* Scanning line effect */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      height: '2px',
+                      background: 'linear-gradient(90deg, transparent, #0dcaf0, transparent)',
+                      zIndex: 5,
+                      animation: 'scanLine 3s ease-in-out infinite',
+                      opacity: isHovered ? 1 : 0.3,
+                    }}
+                  />
+                </div>
+                
+                {/* Corner accents */}
+                <div style={{
+                  position: 'absolute',
+                  top: -5,
+                  left: -5,
+                  width: 20,
+                  height: 20,
+                  border: '2px solid #0dcaf0',
+                  borderRight: 'none',
+                  borderBottom: 'none',
+                  borderRadius: '8px 0 0 0',
+                  zIndex: 6,
+                }} />
+                <div style={{
+                  position: 'absolute',
+                  top: -5,
+                  right: -5,
+                  width: 20,
+                  height: 20,
+                  border: '2px solid #0dcaf0',
+                  borderLeft: 'none',
+                  borderBottom: 'none',
+                  borderRadius: '0 8px 0 0',
+                  zIndex: 6,
+                }} />
+                <div style={{
+                  position: 'absolute',
+                  bottom: -5,
+                  left: -5,
+                  width: 20,
+                  height: 20,
+                  border: '2px solid #0dcaf0',
+                  borderRight: 'none',
+                  borderTop: 'none',
+                  borderRadius: '0 0 0 8px',
+                  zIndex: 6,
+                }} />
+                <div style={{
+                  position: 'absolute',
+                  bottom: -5,
+                  right: -5,
+                  width: 20,
+                  height: 20,
+                  border: '2px solid #0dcaf0',
+                  borderLeft: 'none',
+                  borderTop: 'none',
+                  borderRadius: '0 0 8px 0',
+                  zIndex: 6,
+                }} />
+              </div>
+              
+              {/* Floating tech icons */}
+              <div style={{
+                position: 'absolute',
+                top: -30,
+                right: -30,
+                width: 60,
+                height: 60,
+                background: 'rgba(13,202,240,0.1)',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                animation: 'float 4s ease-in-out infinite',
+                zIndex: 7,
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
+                border: '1px solid rgba(13,202,240,0.3)',
+              }}>
+                <span style={{ fontSize: '1.5rem' }}>⚛️</span>
+              </div>
+              
+              <div style={{
+                position: 'absolute',
+                bottom: -30,
+                left: -30,
+                width: 50,
+                height: 50,
+                background: 'rgba(13,110,253,0.1)',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                animation: 'float 4s ease-in-out infinite reverse',
+                zIndex: 7,
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
+                border: '1px solid rgba(13,110,253,0.3)',
+              }}>
+                <span style={{ fontSize: '1.2rem' }}>🚀</span>
+              </div>
             </div>
           </div>
           <div className="col-md-7 text-center text-md-start d-flex flex-column align-items-center align-items-md-start" data-aos="fade-left" data-aos-delay="400">
