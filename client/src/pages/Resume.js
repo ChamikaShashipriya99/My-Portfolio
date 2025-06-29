@@ -45,7 +45,7 @@ const Resume = () => (
         {/* Left: Info & Timeline */}
         <div className="resume-info">
           <a
-            href="https://drive.google.com/uc?export=download&id=11QOzaa3RMH-R-yrSONQXuwm9XsxZ2Epo"
+            href="https://drive.google.com/file/d/1TyhpkBU6cNPi3uqAojoDZknd57lGbcTz/view?usp=sharing"
             className="resume-download-btn"
             target="_blank"
             rel="noopener noreferrer"

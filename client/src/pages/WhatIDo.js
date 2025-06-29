@@ -20,7 +20,7 @@ const whatIDo = [
   {
     title: 'MAD Projects',
     icon: '📱',
-    desc: 'Creating modern Mobile Application Development projects for Android and iOS platforms.'
+    desc: 'Creating modern Mobile Application Development projects for Android platforms.'
   },
 ];
 
