@@ -79,7 +79,7 @@ const Resume = () => (
         <div className="resume-preview" data-aos="fade-left" data-aos-delay="600">
           <div className="resume-pdf-card">
             <iframe
-              src="https://drive.google.com/file/d/11QOzaa3RMH-R-yrSONQXuwm9XsxZ2Epo/preview"
+              src="https://drive.google.com/file/d/1TyhpkBU6cNPi3uqAojoDZknd57lGbcTz/preview"
               title="Resume Preview"
               style={{ width: '100%', height: 420, border: 'none', borderRadius: '1rem' }}
               allow="autoplay"
