@@ -18,6 +18,11 @@ import Preloader from './components/Preloader';
 function App() {
   const [scrolled, setScrolled] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [currentFilter, setCurrentFilter] = useState('all');
+  const [availableLanguages, setAvailableLanguages] = useState([]);
+
+  const GITHUB_USERNAME = 'ChamikaShashipriya99';
+  const REPO_COUNT = 100;
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 5000);
@@ -40,6 +45,36 @@ function App() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Fetch available languages from GitHub
+  useEffect(() => {
+    const fetchLanguages = async () => {
+      try {
+        const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=${REPO_COUNT}`);
+        const repos = await response.json();
+        
+        if (Array.isArray(repos)) {
+          const languages = [...new Set(repos.map(repo => repo.language).filter(Boolean))].sort();
+          setAvailableLanguages(languages);
+        }
+      } catch (error) {
+        console.error('Failed to fetch languages:', error);
+        // Fallback to common languages
+        setAvailableLanguages(['JavaScript', 'React', 'Node.js', 'Python', 'Java', 'PHP']);
+      }
+    };
+
+    fetchLanguages();
+  }, []);
+
+  const handleProjectFilter = (filter) => {
+    setCurrentFilter(filter);
+    // Smooth scroll to projects section
+    const projectsSection = document.getElementById('projects');
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   if (loading) return <Preloader />;
 
@@ -118,7 +153,6 @@ function App() {
                 { href: '#home', text: 'Home' },
                 { href: '#about', text: 'About' },
                 { href: '#skills', text: 'Skills' },
-                { href: '#projects', text: 'Projects' },
                 { href: '#resume', text: 'Resume' },
                 { href: '#contact', text: 'Contact' }
               ].map((item, index) => (
@@ -159,6 +193,117 @@ function App() {
                   </a>
                 </li>
               ))}
+              
+              {/* Projects Dropdown */}
+              <li className="nav-item dropdown">
+                <a 
+                  className="nav-link dropdown-toggle fw-semibold px-3 mx-1 position-relative" 
+                  href="#projects"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  style={{ 
+                    color: '#fff',
+                    fontSize: '0.95rem',
+                    letterSpacing: '0.5px',
+                    borderRadius: '1rem',
+                    transition: 'all 0.3s ease-in-out',
+                    textDecoration: 'none',
+                    cursor: 'pointer',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.background = 'rgba(13, 202, 240, 0.15)';
+                    e.target.style.color = '#0dcaf0';
+                    e.target.style.transform = 'translateY(-2px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.background = 'transparent';
+                    e.target.style.color = '#fff';
+                    e.target.style.transform = 'translateY(0)';
+                  }}
+                >
+                  Projects
+                  <span 
+                    className="position-absolute bottom-0 start-50 translate-middle-x"
+                    style={{
+                      width: '0%',
+                      height: '2px',
+                      background: 'linear-gradient(90deg, #0dcaf0, #0d6efd)',
+                      transition: 'width 0.3s ease-in-out',
+                      borderRadius: '1px',
+                    }}
+                  ></span>
+                </a>
+                <ul 
+                  className="dropdown-menu"
+                  style={{
+                    background: 'rgba(24, 24, 27, 0.95)',
+                    backdropFilter: 'blur(20px)',
+                    border: '1px solid rgba(13, 202, 240, 0.3)',
+                    borderRadius: '1rem',
+                    boxShadow: '0 8px 32px rgba(13, 202, 240, 0.15), 0 4px 16px rgba(0, 0, 0, 0.3)',
+                    padding: '0.5rem',
+                    marginTop: '0.5rem',
+                  }}
+                >
+                  <li>
+                    <a 
+                      className="dropdown-item"
+                      href="#projects"
+                      onClick={() => handleProjectFilter('all')}
+                      style={{
+                        color: '#fff',
+                        fontSize: '0.9rem',
+                        padding: '0.75rem 1rem',
+                        borderRadius: '0.75rem',
+                        transition: 'all 0.3s ease-in-out',
+                        border: 'none',
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = 'rgba(13, 202, 240, 0.2)';
+                        e.target.style.color = '#0dcaf0';
+                        e.target.style.transform = 'translateX(5px)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = 'transparent';
+                        e.target.style.color = '#fff';
+                        e.target.style.transform = 'translateX(0)';
+                      }}
+                    >
+                      All Projects
+                    </a>
+                  </li>
+                  {availableLanguages.map((language) => (
+                    <li key={language}>
+                      <a 
+                        className="dropdown-item"
+                        href="#projects"
+                        onClick={() => handleProjectFilter(language)}
+                        style={{
+                          color: '#fff',
+                          fontSize: '0.9rem',
+                          padding: '0.75rem 1rem',
+                          borderRadius: '0.75rem',
+                          transition: 'all 0.3s ease-in-out',
+                          border: 'none',
+                        }}
+                        onMouseEnter={(e) => {
+                          e.target.style.background = 'rgba(13, 202, 240, 0.2)';
+                          e.target.style.color = '#0dcaf0';
+                          e.target.style.transform = 'translateX(5px)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.background = 'transparent';
+                          e.target.style.color = '#fff';
+                          e.target.style.transform = 'translateX(0)';
+                        }}
+                      >
+                        {language}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </li>
             </ul>
           </div>
         </div>
@@ -171,7 +316,7 @@ function App() {
         <About />
         <WhatIDo />
         <Skills />
-        <Projects />
+        <Projects initialFilter={currentFilter} />
         <Resume />
         <Contact />
         <Footer />

@@ -28,11 +28,16 @@ function extractFirstParagraph(markdown) {
   return paragraphs[0] || '';
 }
 
-const Projects = () => {
+const Projects = ({ initialFilter = 'all' }) => {
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [filter, setFilter] = useState('all');
+  const [filter, setFilter] = useState(initialFilter);
+
+  // Update filter when initialFilter prop changes
+  useEffect(() => {
+    setFilter(initialFilter);
+  }, [initialFilter]);
 
   useEffect(() => {
     fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=${REPO_COUNT}`, { headers })
