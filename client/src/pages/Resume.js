@@ -42,7 +42,7 @@ const Resume = () => (
         Download my resume or explore my journey below
       </p>
       <div className="resume-card">
-        {/* Left: Info & Timeline */}
+        {/* Left: Info & Roadmap */}
         <div className="resume-info">
           <a
             href="https://drive.google.com/file/d/1TyhpkBU6cNPi3uqAojoDZknd57lGbcTz/view?usp=sharing"
@@ -57,20 +57,21 @@ const Resume = () => (
           <div className="resume-summary" data-aos="fade-up" data-aos-delay="300">
             Passionate about building impactful software and always eager to learn new technologies. Here's a quick look at my journey so far:
           </div>
-          <div className="resume-timeline" data-aos="fade-up" data-aos-delay="400">
+          <div className="roadmap" data-aos="fade-up" data-aos-delay="400">
             {timeline.map((item, idx) => (
-              <div className="timeline-item" key={idx}>
-                <div className="timeline-icon">
-                  <img src={item.iconUrl} alt={item.title + ' icon'} style={{ width: 32, height: 32 }} />
+              <div className="roadmap-milestone" key={idx}>
+                <div className="roadmap-step-circle">
+                  <span className="roadmap-step-number">{idx + 1}</span>
+                  <img src={item.iconUrl} alt={item.title + ' icon'} className="roadmap-icon" />
                 </div>
-                <div className="timeline-content">
-                  <div className="timeline-type">{item.type}</div>
-                  <div className="timeline-title">{item.title}</div>
-                  <div className="timeline-place">{item.place}</div>
-                  <div className="timeline-year">{item.year}</div>
-                  <div className="timeline-desc">{item.desc}</div>
+                <div className="roadmap-content">
+                  <div className="roadmap-type">{item.type}</div>
+                  <div className="roadmap-title">{item.title}</div>
+                  <div className="roadmap-place">{item.place}</div>
+                  <div className="roadmap-year">{item.year}</div>
+                  {item.desc && <div className="roadmap-desc">{item.desc}</div>}
                 </div>
-                {idx !== timeline.length - 1 && <div className="timeline-connector" />}
+                {idx !== timeline.length - 1 && <div className="roadmap-connector" />}
               </div>
             ))}
           </div>
