@@ -62,12 +62,33 @@
   min-width: 120px;
   min-height: 150px;
   position: relative;
+  /* For 3D tilt */
+  will-change: transform, box-shadow;
+  --mx: 0;
+  --my: 0;
 }
 
 .skill-card:hover {
-  transform: translateY(-8px) scale(1.06);
-  box-shadow: 0 12px 40px 0 rgba(13,202,240,0.22), 0 4px 24px 0 rgba(0,0,0,0.18);
+  transform: translateY(-8px) scale(1.06) rotateY(calc(var(--mx, 0) * 10deg)) rotateX(calc(var(--my, 0) * 10deg));
+  box-shadow: 0 12px 40px 0 rgba(13,202,240,0.22), 0 4px 24px 0 rgba(0,0,0,0.18), 0 0 32px 0 rgba(13,202,240,0.18);
   border-color: #0dcaf0;
+  z-index: 2;
+}
+
+.skill-card::after {
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  background: radial-gradient(circle at calc(50% + var(--mx, 0) * 40%) calc(50% + var(--my, 0) * 40%), rgba(13,202,240,0.18), transparent 70%);
+  z-index: 1;
+}
+
+.skill-card:hover::after {
+  opacity: 1;
 }
 
 .skill-logo-container {

@@ -53,6 +53,23 @@ const skillCategories = [
   },
 ];
 
+const handleMouseMove = (e) => {
+  const card = e.currentTarget;
+  const rect = card.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  const mx = ((x / rect.width) - 0.5) * 2; // -1 to 1
+  const my = ((y / rect.height) - 0.5) * 2; // -1 to 1
+  card.style.setProperty('--mx', mx.toFixed(2));
+  card.style.setProperty('--my', my.toFixed(2));
+};
+
+const handleMouseLeave = (e) => {
+  const card = e.currentTarget;
+  card.style.setProperty('--mx', 0);
+  card.style.setProperty('--my', 0);
+};
+
 const Skills = () => (
   <section id="skills" className="skills-section">
     <div className="skills-container">
@@ -73,6 +90,8 @@ const Skills = () => (
                   className="skill-card"
                   data-aos="zoom-in"
                   data-aos-delay={index * 30}
+                  onMouseMove={handleMouseMove}
+                  onMouseLeave={handleMouseLeave}
                 >
                   <div className="skill-logo-container">
                     <img src={skill.logo} alt={skill.name} className="skill-logo" />
