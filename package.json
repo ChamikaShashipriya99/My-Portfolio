@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "react-animated-cursor": "^2.11.2",
-    "react-bits": "^1.0.5"
+    "react-bits": "^1.0.5",
+    "react-router-dom": "^7.7.0"
   }
 }
