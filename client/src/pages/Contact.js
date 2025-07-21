@@ -72,6 +72,12 @@ const Contact = () => {
 
   return (
     <section id="contact" className="contact-section">
+      <div className="contact-floating-bg" aria-hidden="true">
+        <span className="floating-1"></span>
+        <span className="floating-2"></span>
+        <span className="floating-3"></span>
+        <span className="floating-4"></span>
+      </div>
       <div className="contact-container">
         <h2 className="contact-title" data-aos="fade-up">
           <span className="title-accent">Contact</span> Me

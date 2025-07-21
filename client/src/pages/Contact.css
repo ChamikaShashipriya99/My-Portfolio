@@ -249,6 +249,69 @@
   box-shadow: 0 2px 8px 0 rgba(13,202,240,0.08);
 }
 
+.contact-floating-bg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.contact-floating-bg span {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(32px);
+  opacity: 0.32;
+  will-change: transform;
+}
+.floating-1 {
+  width: 220px; height: 220px;
+  left: 5vw; top: 12vh;
+  background: linear-gradient(135deg, #0dcaf0 60%, #0d6efd 100%);
+  animation: float1 14s ease-in-out infinite alternate;
+}
+.floating-2 {
+  width: 140px; height: 140px;
+  right: 8vw; top: 22vh;
+  background: linear-gradient(135deg, #0d6efd 60%, #0dcaf0 100%);
+  animation: float2 11s ease-in-out infinite alternate;
+}
+.floating-3 {
+  width: 180px; height: 180px;
+  left: 18vw; bottom: 10vh;
+  background: linear-gradient(135deg, #0dcaf0 60%, #0d6efd 100%);
+  animation: float3 17s ease-in-out infinite alternate;
+}
+.floating-4 {
+  width: 110px; height: 110px;
+  right: 15vw; bottom: 18vh;
+  background: linear-gradient(135deg, #0d6efd 60%, #0dcaf0 100%);
+  animation: float4 13s ease-in-out infinite alternate;
+}
+@keyframes float1 {
+  0% { transform: translateY(0) translateX(0) scale(1); }
+  30% { transform: translateY(-30px) translateX(20px) scale(1.08); }
+  60% { transform: translateY(20px) translateX(-15px) scale(0.96); }
+  100% { transform: translateY(-25px) translateX(10px) scale(1.04); }
+}
+@keyframes float2 {
+  0% { transform: translateY(0) translateX(0) scale(1); }
+  40% { transform: translateY(-18px) translateX(-12px) scale(1.1); }
+  70% { transform: translateY(22px) translateX(18px) scale(0.92); }
+  100% { transform: translateY(-12px) translateX(8px) scale(1.06); }
+}
+@keyframes float3 {
+  0% { transform: translateY(0) translateX(0) scale(1); }
+  25% { transform: translateY(25px) translateX(-18px) scale(1.04); }
+  55% { transform: translateY(-30px) translateX(22px) scale(1.12); }
+  100% { transform: translateY(18px) translateX(-10px) scale(0.98); }
+}
+@keyframes float4 {
+  0% { transform: translateY(0) translateX(0) scale(1); }
+  35% { transform: translateY(-15px) translateX(10px) scale(1.07); }
+  65% { transform: translateY(18px) translateX(-12px) scale(0.93); }
+  100% { transform: translateY(-10px) translateX(6px) scale(1.03); }
+}
+
 @media (max-width: 900px) {
   .contact-card {
     flex-direction: column;
