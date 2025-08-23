@@ -92,6 +92,32 @@ const Contact = () => {
             <p className="contact-info-desc">
               I'm open to opportunities, collaborations, or just a friendly chat. Drop me a message or connect via social links below!
             </p>
+            
+            {/* Availability Component */}
+            <div className="availability-section">
+              <div className="availability-header">
+                <div className="availability-icon">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" fill="url(#sparkle)"/>
+                    <defs>
+                      <linearGradient id="sparkle" x1="12" y1="2" x2="12" y2="16" gradientUnits="userSpaceOnUse">
+                        <stop stopColor="#FFA500"/>
+                        <stop offset="1" stopColor="#FFD700"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
+                <h4 className="availability-title">Availability</h4>
+              </div>
+              <p className="availability-description">
+                I'm currently available for freelance work and full-time opportunities.
+              </p>
+              <div className="availability-status">
+                <div className="status-dot"></div>
+                <span className="status-text">Open to new opportunities</span>
+              </div>
+            </div>
+            
             <div className="contact-socials">
               {socialLinks.map(link => (
                 <a
