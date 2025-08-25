@@ -1,5 +1,4 @@
 import React from 'react';
-import './Resume.css';
 
 const timeline = [
   {
@@ -33,58 +32,76 @@ const timeline = [
 ];
 
 const Resume = () => (
-  <section id="resume" className="resume-section">
-    <div className="resume-container">
-      <h2 className="resume-title" data-aos="fade-up">
-        <span className="title-accent">My</span> Resume
-      </h2>
-      <p className="resume-subtitle" data-aos="fade-up" data-aos-delay="100">
-        Download my resume or explore my journey below
-      </p>
-      <div className="resume-card">
+  <section 
+    id="resume" 
+    className="py-20 relative z-10"
+    style={{ 
+      background: 'linear-gradient(135deg, rgba(24,24,27,0.3) 60%, rgba(35,39,47,0.2) 100%)',
+    }}
+  >
+    <div className="container mx-auto px-6">
+      <div className="text-center mb-12">
+        <h2 className="font-black text-4xl lg:text-5xl gradient-text mb-6 text-shadow" data-aos="fade-up">
+          My Resume
+        </h2>
+        <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+          Download my resume or explore my journey below
+        </p>
+      </div>
+      
+      <div className="flex flex-col lg:flex-row glass-card overflow-hidden max-w-6xl mx-auto min-h-[420px]">
         {/* Left: Info & Roadmap */}
-        <div className="resume-info">
+        <div className="lg:w-1/2 p-12 bg-dark-800/55 border-r border-primary-500/20">
           <a
             href="https://drive.google.com/file/d/1TyhpkBU6cNPi3uqAojoDZknd57lGbcTz/view?usp=sharing"
-            className="resume-download-btn"
+            className="inline-flex items-center gap-3 bg-gradient-to-r from-primary-500 to-secondary-500 text-white font-bold text-lg px-8 py-4 rounded-3xl shadow-lg shadow-primary-500/20 transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary-500/30 mb-6"
             target="_blank"
             rel="noopener noreferrer"
             data-aos="zoom-in"
             data-aos-delay="200"
           >
-            <span className="resume-download-icon">⬇️</span> Download Resume (PDF)
+            <span className="text-xl">⬇️</span> 
+            Download Resume (PDF)
           </a>
-          <div className="resume-summary" data-aos="fade-up" data-aos-delay="300">
+          
+          <div className="text-gray-400 text-lg mb-6 leading-relaxed" data-aos="fade-up" data-aos-delay="300">
             Passionate about building impactful software and always eager to learn new technologies. Here's a quick look at my journey so far:
           </div>
-          <div className="roadmap" data-aos="fade-up" data-aos-delay="400">
+          
+          <div className="space-y-10 relative" data-aos="fade-up" data-aos-delay="400">
             {timeline.map((item, idx) => (
-              <div className="roadmap-milestone" key={idx}>
-                <div className="roadmap-step-circle">
-                  <span className="roadmap-step-number">{idx + 1}</span>
-                  <img src={item.iconUrl} alt={item.title + ' icon'} className="roadmap-icon" />
+              <div key={idx} className="flex items-start relative">
+                <div className="relative flex-shrink-0 w-14 h-14 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full flex items-center justify-center shadow-lg shadow-primary-500/20 border-4 border-dark-700 mr-6">
+                  <span className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-dark-700 text-primary-500 text-sm font-bold rounded-2xl px-3 py-1 shadow-lg">
+                    {idx + 1}
+                  </span>
+                  <img src={item.iconUrl} alt={item.title + ' icon'} className="w-8 h-8" />
                 </div>
-                <div className="roadmap-content">
-                  <div className="roadmap-type">{item.type}</div>
-                  <div className="roadmap-title">{item.title}</div>
-                  <div className="roadmap-place">{item.place}</div>
-                  <div className="roadmap-year">{item.year}</div>
-                  {item.desc && <div className="roadmap-desc">{item.desc}</div>}
+                
+                <div className="flex-1 pt-1">
+                  <div className="text-sm text-primary-500 font-semibold mb-1">{item.type}</div>
+                  <div className="text-lg font-bold text-white mb-1">{item.title}</div>
+                  <div className="text-gray-400 mb-1">{item.place}</div>
+                  <div className="text-sm text-primary-500 font-semibold">{item.year}</div>
                 </div>
-                {idx !== timeline.length - 1 && <div className="roadmap-connector" />}
+                
+                {idx !== timeline.length - 1 && (
+                  <div className="absolute left-7 top-14 w-1 h-10 bg-gradient-to-b from-primary-500 to-secondary-500 rounded-full" />
+                )}
               </div>
             ))}
           </div>
         </div>
+        
         {/* Right: PDF Preview */}
-        <div className="resume-preview" data-aos="fade-left" data-aos-delay="600">
-          <div className="resume-pdf-card">
+        <div className="lg:w-1/2 p-12 flex items-center justify-center" data-aos="fade-left" data-aos-delay="600">
+          <div className="w-full max-w-sm glass-card overflow-hidden">
             <iframe
               src="https://drive.google.com/file/d/1TyhpkBU6cNPi3uqAojoDZknd57lGbcTz/preview"
               title="Resume Preview"
-              style={{ width: '100%', height: 420, border: 'none', borderRadius: '1rem' }}
+              className="w-full h-96 border-0 rounded-2xl"
               allow="autoplay"
-            ></iframe>
+            />
           </div>
         </div>
       </div>
@@ -92,4 +109,4 @@ const Resume = () => (
   </section>
 );
 
-export default Resume; 
+export default Resume;

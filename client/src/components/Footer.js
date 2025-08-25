@@ -40,41 +40,26 @@ const quickLinks = [
 ];
 
 const Footer = () => (
-  <footer
-    className="mt-5 pt-5 pb-3 position-relative w-100"
-    style={{
-      background: 'rgba(24,24,27,0.25)',
-      backdropFilter: 'blur(18px) saturate(160%)',
-      WebkitBackdropFilter: 'blur(18px) saturate(160%)',
-      borderTop: '2px solid rgba(13,202,240,0.18)',
-      borderRadius: '2rem 2rem 0 0',
-      boxShadow: '0 -8px 32px 0 rgba(13,202,240,0.10), 0 -2px 8px 0 rgba(0,0,0,0.18)',
-      color: '#e0e0e0',
-      zIndex: 10,
-      overflow: 'hidden',
-    }}
-  >
-    <div className="container">
-      <div className="row gy-4 align-items-start justify-content-between">
+  <footer className="mt-20 pt-20 pb-8 relative w-full glass-card rounded-t-3xl border-t-2 border-primary-500/20 shadow-2xl shadow-primary-500/10 text-gray-300 z-10 overflow-hidden">
+    <div className="container mx-auto px-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
         {/* About */}
-        <div className="col-12 col-md-5 col-lg-4">
-          <h5 className="fw-bold text-info mb-3" style={{ letterSpacing: '1px' }}>About This Portfolio</h5>
-          <p style={{ color: '#b0b0b0', fontSize: '1rem' }}>
-            This is the personal portfolio of <span className="fw-semibold text-info">Chamika Shashipriya</span>, a passionate Full-Stack Developer and UI/UX Designer. Built with the MERN stack and Bootstrap, featuring dynamic GitHub integration and modern glassmorphism design.
+        <div className="lg:col-span-1">
+          <h5 className="font-bold text-primary-500 mb-4 text-xl tracking-wide">About This Portfolio</h5>
+          <p className="text-gray-400 text-lg leading-relaxed">
+            This is the personal portfolio of <span className="font-semibold text-primary-500">Chamika Shashipriya</span>, a passionate Full-Stack Developer and UI/UX Designer. Built with React and Tailwind CSS, featuring dynamic GitHub integration and modern glassmorphism design.
           </p>
         </div>
+        
         {/* Quick Links */}
-        <div className="col-6 col-md-3 col-lg-2">
-          <h6 className="fw-bold text-info mb-3">Quick Links</h6>
-          <ul className="list-unstyled mb-0">
+        <div>
+          <h6 className="font-bold text-primary-500 mb-4 text-lg">Quick Links</h6>
+          <ul className="space-y-3">
             {quickLinks.map(link => (
-              <li key={link.text} className="mb-2">
+              <li key={link.text}>
                 <a
                   href={link.href}
-                  className="text-decoration-none text-light fw-semibold"
-                  style={{ fontSize: '1rem', transition: 'color 0.2s' }}
-                  onMouseEnter={e => (e.currentTarget.style.color = '#0dcaf0')}
-                  onMouseLeave={e => (e.currentTarget.style.color = '#fff')}
+                  className="text-gray-300 font-semibold text-lg transition-all duration-300 hover:text-primary-500 hover:translate-x-1 inline-block"
                 >
                   {link.text}
                 </a>
@@ -82,54 +67,46 @@ const Footer = () => (
             ))}
           </ul>
         </div>
+        
         {/* Social & Contact */}
-        <div className="col-6 col-md-4 col-lg-3">
-          <h6 className="fw-bold text-info mb-3">Connect</h6>
-          <div className="d-flex flex-wrap align-items-center gap-2 mb-2">
+        <div>
+          <h6 className="font-bold text-primary-500 mb-4 text-lg">Connect</h6>
+          <div className="flex flex-wrap gap-3 mb-4">
             {socialLinks.map(link => (
               <a
                 key={link.name}
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="d-flex align-items-center justify-content-center"
-                style={{
-                  width: 36,
-                  height: 36,
-                  borderRadius: '50%',
-                  background: 'rgba(13,202,240,0.10)',
-                  transition: 'background 0.2s',
-                  boxShadow: '0 2px 8px 0 rgba(13,202,240,0.08)',
-                }}
-                onMouseEnter={e => (e.currentTarget.style.background = 'rgba(13,202,240,0.25)')}
-                onMouseLeave={e => (e.currentTarget.style.background = 'rgba(13,202,240,0.10)')}
+                className="w-10 h-10 bg-primary-500/10 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-primary-500/25 hover:scale-110 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary-500/20"
               >
-                <img src={link.icon} alt={link.name} style={{ width: 22, height: 22, borderRadius: 4, background: link.name === 'WhatsApp' ? '#fff' : 'transparent' }} />
+                <img src={link.icon} alt={link.name} className="w-6 h-6 rounded" style={{ background: link.name === 'WhatsApp' ? '#fff' : 'transparent' }} />
               </a>
             ))}
           </div>
-          <div style={{ color: '#b0b0b0', fontSize: '0.97rem' }}>
+          <div className="space-y-2 text-gray-400">
             {socialLinks.filter(l => l.display).map(link => (
-              <div key={link.name} className="d-flex align-items-center gap-2 mb-1">
-                <img src={link.icon} alt={link.name} style={{ width: 18, height: 18, borderRadius: 3, background: link.name === 'WhatsApp' ? '#fff' : 'transparent' }} />
-                <span>{link.display}</span>
+              <div key={link.name} className="flex items-center gap-3">
+                <img src={link.icon} alt={link.name} className="w-5 h-5 rounded" style={{ background: link.name === 'WhatsApp' ? '#fff' : 'transparent' }} />
+                <span className="text-sm">{link.display}</span>
               </div>
             ))}
           </div>
         </div>
       </div>
+      
       {/* Divider */}
-      <div className="my-4" style={{ borderTop: '1.5px solid rgba(13,202,240,0.13)' }}></div>
-      <div className="d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
-        <div className="d-flex align-items-center gap-2">
-          <img src={process.env.PUBLIC_URL + '/mindstack-favicon.png'} alt="MindStack Logo" style={{ width: 38, height: 38, borderRadius: '12px', boxShadow: '0 2px 8px 0 rgba(13,202,240,0.10)' }} />
-          <span className="fw-bold text-info" style={{ fontSize: '1.05rem', letterSpacing: '1px' }}>
+      <div className="my-8 h-px bg-gradient-to-r from-transparent via-primary-500/30 to-transparent" />
+      
+      <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <img src={process.env.PUBLIC_URL + '/mindstack-favicon.png'} alt="MindStack Logo" className="w-10 h-10 rounded-xl shadow-lg shadow-primary-500/10" />
+          <span className="font-bold text-primary-500 text-lg tracking-wide">
             © {new Date().getFullYear()} Chamika Shashipriya. All rights reserved.
           </span>
         </div>
         <button
-          className="btn btn-outline-info btn-sm fw-bold rounded-pill px-3"
-          style={{ boxShadow: '0 2px 8px 0 rgba(13,202,240,0.08)', background: 'rgba(13,202,240,0.08)' }}
+          className="glass-button px-6 py-3 font-bold rounded-full transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary-500/20"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
           ↑ Back to Top
@@ -139,4 +116,4 @@ const Footer = () => (
   </footer>
 );
 
-export default Footer; 
+export default Footer;

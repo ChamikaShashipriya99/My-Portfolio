@@ -1,5 +1,4 @@
 import React from 'react';
-import './Skills.css';
 
 const skillCategories = [
   {
@@ -58,8 +57,8 @@ const handleMouseMove = (e) => {
   const rect = card.getBoundingClientRect();
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
-  const mx = ((x / rect.width) - 0.5) * 2; // -1 to 1
-  const my = ((y / rect.height) - 0.5) * 2; // -1 to 1
+  const mx = ((x / rect.width) - 0.5) * 2;
+  const my = ((y / rect.height) - 0.5) * 2;
   card.style.setProperty('--mx', mx.toFixed(2));
   card.style.setProperty('--my', my.toFixed(2));
 };
@@ -71,32 +70,61 @@ const handleMouseLeave = (e) => {
 };
 
 const Skills = () => (
-  <section id="skills" className="skills-section">
-    <div className="skills-container">
-      <h2 className="skills-title" data-aos="fade-up">
-        <span className="title-accent">My</span> Skills
-      </h2>
-      <p className="skills-subtitle" data-aos="fade-up" data-aos-delay="100">
-        Technologies, languages, and tools I work with
-      </p>
-      <div className="skills-categories">
+  <section 
+    id="skills" 
+    className="py-20 relative z-10"
+    style={{ 
+      background: 'linear-gradient(135deg, rgba(24,24,27,0.3) 60%, rgba(35,39,47,0.2) 100%)',
+    }}
+  >
+    <div className="container mx-auto px-6">
+      <div className="text-center mb-12">
+        <h2 className="font-black text-4xl lg:text-5xl gradient-text mb-6 text-shadow" data-aos="fade-up">
+          My Skills
+        </h2>
+        <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+          Technologies, languages, and tools I work with
+        </p>
+      </div>
+      
+      <div className="space-y-16">
         {skillCategories.map((category, catIdx) => (
-          <div className="skills-category" key={category.title}>
-            <h3 className="skills-category-title" data-aos="fade-up" data-aos-delay={150 + catIdx * 50}>{category.title}</h3>
-            <div className="skills-grid">
+          <div key={category.title} className="space-y-8">
+            <h3 
+              className="text-2xl font-bold text-primary-500 text-left tracking-wide" 
+              data-aos="fade-up" 
+              data-aos-delay={150 + catIdx * 50}
+            >
+              {category.title}
+            </h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 justify-items-center">
               {category.skills.map((skill, index) => (
                 <div
                   key={skill.name}
-                  className="skill-card"
+                  className="glass-card p-8 flex flex-col items-center min-w-[120px] min-h-[150px] cursor-pointer group relative overflow-hidden transition-all duration-300 hover:scale-105 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary-500/20 hover:border-primary-500"
                   data-aos="zoom-in"
                   data-aos-delay={index * 30}
                   onMouseMove={handleMouseMove}
                   onMouseLeave={handleMouseLeave}
+                  style={{
+                    transform: 'rotateY(calc(var(--mx, 0) * 10deg)) rotateX(calc(var(--my, 0) * 10deg))',
+                    transformStyle: 'preserve-3d',
+                  }}
                 >
-                  <div className="skill-logo-container">
-                    <img src={skill.logo} alt={skill.name} className="skill-logo" />
+                  {/* Radial gradient overlay on hover */}
+                  <div 
+                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                    style={{
+                      background: 'radial-gradient(circle at calc(50% + var(--mx, 0) * 40%) calc(50% + var(--my, 0) * 40%), rgba(13,202,240,0.18), transparent 70%)',
+                    }}
+                  />
+                  
+                  <div className="w-12 h-12 bg-white/85 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-primary-500/10 relative z-10">
+                    <img src={skill.logo} alt={skill.name} className="w-8 h-8 object-contain" />
                   </div>
-                  <div className="skill-name">{skill.name}</div>
+                  <div className="text-lg font-semibold text-primary-500 text-center tracking-wide relative z-10">
+                    {skill.name}
+                  </div>
                 </div>
               ))}
             </div>
@@ -107,4 +135,4 @@ const Skills = () => (
   </section>
 );
 
-export default Skills; 
+export default Skills;

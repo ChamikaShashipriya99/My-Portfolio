@@ -1,6 +1,4 @@
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'aos/dist/aos.css';
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -82,19 +80,16 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="App bg-dark min-vh-100">
+      <div className="App bg-dark-900 min-h-screen">
         {/* 3D Particle Background */}
         <ParticleBackground />
         
         {/* Enhanced Floating Transparent Navbar */}
         <nav
-          className={`navbar navbar-expand-lg position-fixed top-0 start-50 translate-middle-x transition-all duration-300 ${
+          className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-[95%] max-w-6xl transition-all duration-300 ${
             scrolled ? 'py-2' : 'py-3'
           }`}
           style={{
-            zIndex: 1000,
-            width: '95%',
-            maxWidth: '1200px',
             backdropFilter: scrolled ? 'blur(20px)' : 'blur(15px)',
             background: scrolled 
               ? 'rgba(24, 24, 27, 0.85)' 
@@ -106,52 +101,42 @@ function App() {
             boxShadow: scrolled
               ? '0 8px 32px rgba(13, 202, 240, 0.15), 0 4px 16px rgba(0, 0, 0, 0.3)'
               : '0 4px 20px rgba(13, 202, 240, 0.1), 0 2px 8px rgba(0, 0, 0, 0.2)',
-            marginTop: '1rem',
-            transition: 'all 0.3s ease-in-out',
           }}
         >
-          <div className="container">
-            <a 
-              className="navbar-brand fw-bold text-info d-flex align-items-center" 
-              href="#home" 
-              style={{ 
-                letterSpacing: '2px', 
-                fontSize: scrolled ? '1.3rem' : '1.5rem',
-                transition: 'font-size 0.3s ease-in-out',
-                textShadow: '0 0 20px rgba(13, 202, 240, 0.3)'
-              }}
-            >
-              <img src={process.env.PUBLIC_URL + '/mindstack-favicon.png'} alt="MindStack Logo" style={{ width: 38, height: 38, borderRadius: '12px', marginRight: 10, boxShadow: '0 2px 8px 0 rgba(13,202,240,0.10)' }} />
-              <span style={{ 
-                background: 'linear-gradient(45deg, #0dcaf0, #0d6efd)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text'
-              }}>
-                Chamika Shashipriya
-              </span>
-            </a>
-            
-            <button 
-              className="navbar-toggler border-0" 
-              type="button" 
-              data-bs-toggle="collapse" 
-              data-bs-target="#navbarNav" 
-              aria-controls="navbarNav" 
-              aria-expanded="false" 
-              aria-label="Toggle navigation"
-              style={{
-                background: 'rgba(13, 202, 240, 0.1)',
-                border: '1px solid rgba(13, 202, 240, 0.3)',
-                borderRadius: '0.75rem',
-                padding: '0.5rem',
-              }}
-            >
-              <span className="navbar-toggler-icon" style={{ filter: 'invert(1)' }}></span>
-            </button>
-            
-            <div className="collapse navbar-collapse" id="navbarNav">
-              <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+          <div className="container mx-auto px-6">
+            <div className="flex items-center justify-between">
+              <a 
+                className="flex items-center font-bold text-primary-500 transition-all duration-300" 
+                href="#home" 
+                style={{ 
+                  letterSpacing: '2px', 
+                  fontSize: scrolled ? '1.3rem' : '1.5rem',
+                  textShadow: '0 0 20px rgba(13, 202, 240, 0.3)'
+                }}
+              >
+                <img 
+                  src={process.env.PUBLIC_URL + '/mindstack-favicon.png'} 
+                  alt="MindStack Logo" 
+                  className="w-10 h-10 rounded-xl mr-3 shadow-lg shadow-primary-500/10" 
+                />
+                <span className="gradient-text">
+                  Chamika Shashipriya
+                </span>
+              </a>
+              
+              {/* Mobile menu button */}
+              <button 
+                className="lg:hidden p-2 rounded-xl bg-primary-500/10 border border-primary-500/30"
+                type="button" 
+                data-bs-toggle="collapse" 
+                data-bs-target="#navbarNav"
+              >
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+              
+              <div className="hidden lg:flex items-center space-x-1" id="navbarNav">
                 {[
                   { href: '#home', text: 'Home' },
                   { href: '#about', text: 'About' },
@@ -159,161 +144,57 @@ function App() {
                   { href: '#resume', text: 'Resume' },
                   { href: '#contact', text: 'Contact' }
                 ].map((item, index) => (
-                  <li className="nav-item" key={index}>
-                    <a 
-                      className="nav-link fw-semibold px-3 mx-1 position-relative" 
-                      href={item.href}
-                      style={{ 
-                        color: '#fff',
-                        fontSize: '0.95rem',
-                        letterSpacing: '0.5px',
-                        borderRadius: '1rem',
-                        transition: 'all 0.3s ease-in-out',
-                        textDecoration: 'none',
-                      }}
-                      onMouseEnter={(e) => {
-                        e.target.style.background = 'rgba(13, 202, 240, 0.15)';
-                        e.target.style.color = '#0dcaf0';
-                        e.target.style.transform = 'translateY(-2px)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.background = 'transparent';
-                        e.target.style.color = '#fff';
-                        e.target.style.transform = 'translateY(0)';
-                      }}
-                    >
-                      {item.text}
-                      <span 
-                        className="position-absolute bottom-0 start-50 translate-middle-x"
-                        style={{
-                          width: '0%',
-                          height: '2px',
-                          background: 'linear-gradient(90deg, #0dcaf0, #0d6efd)',
-                          transition: 'width 0.3s ease-in-out',
-                          borderRadius: '1px',
-                        }}
-                      ></span>
-                    </a>
-                  </li>
+                  <a 
+                    key={index}
+                    className="relative px-4 py-2 mx-1 text-white font-semibold text-sm rounded-2xl transition-all duration-300 hover:bg-primary-500/15 hover:text-primary-500 hover:-translate-y-0.5 group" 
+                    href={item.href}
+                    style={{ letterSpacing: '0.5px' }}
+                  >
+                    {item.text}
+                    <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full transition-all duration-300 group-hover:w-full"></span>
+                  </a>
                 ))}
                 
                 {/* Projects Dropdown */}
-                <li className="nav-item dropdown">
+                <div className="relative group">
                   <a 
-                    className="nav-link dropdown-toggle fw-semibold px-3 mx-1 position-relative" 
+                    className="flex items-center px-4 py-2 mx-1 text-white font-semibold text-sm rounded-2xl transition-all duration-300 hover:bg-primary-500/15 hover:text-primary-500 hover:-translate-y-0.5 cursor-pointer" 
                     href="#projects"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                    style={{ 
-                      color: '#fff',
-                      fontSize: '0.95rem',
-                      letterSpacing: '0.5px',
-                      borderRadius: '1rem',
-                      transition: 'all 0.3s ease-in-out',
-                      textDecoration: 'none',
-                      cursor: 'pointer',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.target.style.background = 'rgba(13, 202, 240, 0.15)';
-                      e.target.style.color = '#0dcaf0';
-                      e.target.style.transform = 'translateY(-2px)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.background = 'transparent';
-                      e.target.style.color = '#fff';
-                      e.target.style.transform = 'translateY(0)';
-                    }}
+                    style={{ letterSpacing: '0.5px' }}
                   >
                     Projects
-                    <span 
-                      className="position-absolute bottom-0 start-50 translate-middle-x"
-                      style={{
-                        width: '0%',
-                        height: '2px',
-                        background: 'linear-gradient(90deg, #0dcaf0, #0d6efd)',
-                        transition: 'width 0.3s ease-in-out',
-                        borderRadius: '1px',
-                      }}
-                    ></span>
+                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                    <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full transition-all duration-300 group-hover:w-full"></span>
                   </a>
-                  <ul 
-                    className="dropdown-menu"
-                    style={{
-                      background: 'rgba(24, 24, 27, 0.95)',
-                      backdropFilter: 'blur(20px)',
-                      border: '1px solid rgba(13, 202, 240, 0.3)',
-                      borderRadius: '1rem',
-                      boxShadow: '0 8px 32px rgba(13, 202, 240, 0.15), 0 4px 16px rgba(0, 0, 0, 0.3)',
-                      padding: '0.5rem',
-                      marginTop: '0.5rem',
-                    }}
-                  >
-                    <li>
-                      <a 
-                        className="dropdown-item"
-                        href="#projects"
-                        onClick={() => handleProjectFilter('all')}
-                        style={{
-                          color: '#fff',
-                          fontSize: '0.9rem',
-                          padding: '0.75rem 1rem',
-                          borderRadius: '0.75rem',
-                          transition: 'all 0.3s ease-in-out',
-                          border: 'none',
-                        }}
-                        onMouseEnter={(e) => {
-                          e.target.style.background = 'rgba(13, 202, 240, 0.2)';
-                          e.target.style.color = '#0dcaf0';
-                          e.target.style.transform = 'translateX(5px)';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.target.style.background = 'transparent';
-                          e.target.style.color = '#fff';
-                          e.target.style.transform = 'translateX(0)';
-                        }}
-                      >
-                        All Projects
-                      </a>
-                    </li>
+                  <div className="absolute top-full left-0 mt-2 w-48 bg-dark-800/95 backdrop-blur-xl border border-primary-500/30 rounded-2xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 p-2">
+                    <a 
+                      className="block px-4 py-3 text-white text-sm rounded-xl transition-all duration-300 hover:bg-primary-500/20 hover:text-primary-500 hover:translate-x-1"
+                      href="#projects"
+                      onClick={() => handleProjectFilter('all')}
+                    >
+                      All Projects
+                    </a>
                     {availableLanguages.map((language) => (
-                      <li key={language}>
-                        <a 
-                          className="dropdown-item"
-                          href="#projects"
-                          onClick={() => handleProjectFilter(language)}
-                          style={{
-                            color: '#fff',
-                            fontSize: '0.9rem',
-                            padding: '0.75rem 1rem',
-                            borderRadius: '0.75rem',
-                            transition: 'all 0.3s ease-in-out',
-                            border: 'none',
-                          }}
-                          onMouseEnter={(e) => {
-                            e.target.style.background = 'rgba(13, 202, 240, 0.2)';
-                            e.target.style.color = '#0dcaf0';
-                            e.target.style.transform = 'translateX(5px)';
-                          }}
-                          onMouseLeave={(e) => {
-                            e.target.style.background = 'transparent';
-                            e.target.style.color = '#fff';
-                            e.target.style.transform = 'translateX(0)';
-                          }}
-                        >
-                          {language}
-                        </a>
-                      </li>
+                      <a 
+                        key={language}
+                        className="block px-4 py-3 text-white text-sm rounded-xl transition-all duration-300 hover:bg-primary-500/20 hover:text-primary-500 hover:translate-x-1"
+                        href="#projects"
+                        onClick={() => handleProjectFilter(language)}
+                      >
+                        {language}
+                      </a>
                     ))}
-                  </ul>
-                </li>
-              </ul>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </nav>
 
         {/* Add top padding to account for floating navbar */}
-        <div style={{ paddingTop: '120px' }}>
+        <div className="pt-32">
           <Routes>
             <Route path="/" element={
               <>
