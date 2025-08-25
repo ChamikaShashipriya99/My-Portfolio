@@ -198,6 +198,7 @@ const Contact = () => {
                     Name
                   </label>
                   {errors.name && <div className="text-red-400 text-sm mt-1">{errors.name}</div>}
+                  }
                 </div>
                 
                 <div className="relative">
@@ -221,6 +222,7 @@ const Contact = () => {
                     Email
                   </label>
                   {errors.email && <div className="text-red-400 text-sm mt-1">{errors.email}</div>}
+                  }
                 </div>
                 
                 <div className="relative">
@@ -244,6 +246,7 @@ const Contact = () => {
                     Message
                   </label>
                   {errors.message && <div className="text-red-400 text-sm mt-1">{errors.message}</div>}
+                  }
                 </div>
                 
                 <button 
